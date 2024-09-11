@@ -60,29 +60,24 @@
     </div>
 
     <script>
+        const credentials = {
+            username: 'william',
+            password: 'gillies'
+        };
+
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            fetch('username.txt')
-                .then(response => response.text())
-                .then(data => {
-                    const [correctUsername, correctPassword] = data.trim().split(',');
-
-                    if (username === correctUsername && password === correctPassword) {
-                        document.getElementById('message').textContent = 'Login successful!';
-                        document.getElementById('message').style.color = 'green';
-                        window.location.href = 'https://example.com';
-                    } else {
-                        document.getElementById('message').textContent = 'Invalid username or password.';
-                        document.getElementById('message').style.color = 'red';
-                    }
-                })
-                .catch(error => {
-                    document.getElementById('message').textContent = 'Error reading credentials file.';
-                    document.getElementById('message').style.color = 'red';
-                });
+            if (username === credentials.username && password === credentials.password) {
+                document.getElementById('message').textContent = 'Login successful!';
+                document.getElementById('message').style.color = 'green';
+                window.location.href = 'https://example.com';
+            } else {
+                document.getElementById('message').textContent = 'Invalid username or password.';
+                document.getElementById('message').style.color = 'red';
+            }
         });
     </script>
 </body>
